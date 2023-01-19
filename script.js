@@ -41,6 +41,7 @@ class TodoList {
       tasksElem: document.querySelector(`#${listId} .tasks`)
     };
     elems.submitButton.addEventListener("click", this.#submit.bind(this));
+    elems.clearButton.addEventListener("click", this.#clearTasks.bind(this));
     return elems;
   }
 
@@ -102,6 +103,12 @@ class TodoList {
       this.#addItem(item)
       this.#domElems.itemInput.value = "";
     }
+  }
+
+  #clearTasks() {
+    this.list = [];
+    this.#updateLocalStorage(this.list);
+    this.#domElems.tasksElem.innerHTML = "";
   }
 }
 
