@@ -106,4 +106,4 @@ class TodoList {
 }
 
 const groceryList = new TodoList('Grocery List', 'grocery-list', document.body);
-const groceryList2 = new TodoList('Home Project List', 'home-project-list', document.body);
+const homeProjectList = new TodoList('Home Project List', 'home-project-list', document.body);
