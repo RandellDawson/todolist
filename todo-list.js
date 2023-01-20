@@ -57,15 +57,17 @@ class TodoList {
     this.#updateItemStatus(itemId, status);
   }
 
+  #appendTask({ description, status, id }) {
+    const p = document.createElement("p");
+    p.id = id;
+    const checked = status ? "checked" : "";
+    p.innerHTML = `${description} <input type="checkbox" ${checked}/>`;
+    p.addEventListener('click', this.#toggleItemCheckbox.bind(this));
+    this.#domElems.tasksElem.appendChild(p);
+  }
+
   #displayList(items) {
-    items.forEach(({ description, status, id }) => {
-      const p = document.createElement("p");
-      p.id = id;
-      const checked = status ? "checked" : "";
-      p.innerHTML = `${description} <input type="checkbox" ${checked}/>`;
-      p.addEventListener('click', this.#toggleItemCheckbox.bind(this));
-      this.#domElems.tasksElem.appendChild(p);
-    });
+    items.forEach((task) => this.#appendTask(task));
   }
 
   #updateLocalStorage(items) {
